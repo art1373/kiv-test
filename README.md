@@ -32,7 +32,7 @@ A user called support to inform that nothing happens when they press "Add to fav
 
 ### **TICKET-02 (Feature):** As a user I want to be able to filter by favorites.
 
-We would like to have a button which filters the list and only shows my favorited pokemons when clicked.
+We would like to have a button which filters the list and only shows my favorite pokemons when clicked.
 
 ### **TICKET-03 (Potential bug):** QA says if they double-click on "Add to favorite" it doesn't really work well.
 
