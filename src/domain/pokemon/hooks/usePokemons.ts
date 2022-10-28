@@ -15,7 +15,6 @@ export const usePokemons = (filterBy: FilterType) => {
   useEffect(() => {
     fetchAndSetPokeList();
   }, [isPokeListChanged]);
-  console.log({ filterBy });
 
   const fetchAndSetPokeList = async () => {
     setLoading(true);
