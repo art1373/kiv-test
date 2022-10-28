@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
   addPokemonToFavorites,
   fetchAllPokemons,
   removePokemonFromFavorites,
 } from "../api";
 import { Poke } from "../models/Poke";
-import { FilterType } from "../models/FilterType";
 
-export const usePokemons = (filterBy: FilterType) => {
+export const usePokemons = () => {
   const [pokeList, setPokeList] = useState<Poke[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [isPokeListChanged, setPokeListChanged] = useState<boolean>(false);
@@ -43,9 +42,11 @@ export const usePokemons = (filterBy: FilterType) => {
     }
   };
 
+  const memoizedPokemons = useMemo(() => pokeList, [pokeList]);
+
   return {
     loading,
-    pokeList,
+    pokeList: memoizedPokemons,
     addToFavorite,
     removeFromFavorite,
   };

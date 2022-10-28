@@ -1,5 +1,5 @@
+import { useCallback, useId, useState } from "react";
 import { Button } from "@mantine/core";
-import { useId, useState } from "react";
 import { usePokemons } from "../hooks";
 import { Poke } from "../models/Poke";
 import { FilterType } from "../models/FilterType";
@@ -9,15 +9,15 @@ export function PokeList() {
   const id = useId();
   const [filterBy, setFilterBy] = useState(FilterType.ALL);
   const { loading, addToFavorite, removeFromFavorite, pokeList } =
-    usePokemons(filterBy);
+    usePokemons();
 
-  const shouldAddOrRemove = (j: Poke) => {
+  const shouldAddOrRemove = useCallback((j: Poke) => {
     if (!j.favorite) {
       addToFavorite(j.name);
     } else {
       removeFromFavorite(j);
     }
-  };
+  }, []);
 
   return (
     <>
@@ -35,16 +35,19 @@ export function PokeList() {
         {filterBy === FilterType.ALL ? "Filter by Favorites" : "Show all"}
       </Button>
 
-      {pokeList
-        .filter((p) => (filterBy === FilterType.FAVORITES ? !!p.favorite : !!p))
-        .map((j) => (
-          <PokeCard
-            key={id}
-            isLoading={loading}
-            {...j}
-            onAddToFavorite={() => shouldAddOrRemove(j)}
-          />
-        ))}
+      {pokeList.length >= 1 &&
+        pokeList
+          .filter((p) =>
+            filterBy === FilterType.FAVORITES ? !!p.favorite : !!p
+          )
+          .map((j) => (
+            <PokeCard
+              key={id}
+              isLoading={loading}
+              {...j}
+              onAddToFavorite={() => shouldAddOrRemove(j)}
+            />
+          ))}
     </>
   );
 }
