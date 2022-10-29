@@ -1,8 +1,9 @@
 import axios from "axios";
 import { handleApiError } from "../../../utils/apiErrorHandler";
+import { Result } from "../../common/models";
 import { Poke } from "../models/Poke";
 
-export const fetchAllPokemons = async (): Promise<any> => {
+export const fetchAllPokemons = async (): Promise<Result<Poke[]>> => {
   try {
     const response = await axios.get("/all");
     return {

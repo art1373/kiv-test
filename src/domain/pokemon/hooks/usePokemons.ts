@@ -18,10 +18,12 @@ export const usePokemons = () => {
   const fetchAndSetPokeList = async () => {
     setLoading(true);
     const resp = await fetchAllPokemons();
-    setTimeout(() => {
-      setPokeList(resp.data);
-      setLoading(false);
-    }, 2000);
+    if (resp.status === 200) {
+      setPokeList(resp?.data ?? []);
+      setTimeout(() => {
+        setLoading(false);
+      }, 800);
+    }
   };
 
   const addToFavorite = async (name: string) => {
