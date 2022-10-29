@@ -18,9 +18,7 @@ export const fetchAllPokemons = async (): Promise<Result<Poke[]>> => {
 
 export const addPokemonToFavorites = async (name: string) => {
   try {
-    const response = await axios.post(`/favorite/${name}`, {
-      method: "post",
-    });
+    const response = await axios.post(`/favorite/${name}`);
     return {
       data: response.data,
       status: 200,

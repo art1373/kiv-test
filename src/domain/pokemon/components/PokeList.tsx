@@ -19,19 +19,16 @@ export function PokeList() {
     }
   }, []);
 
+  const setFiltering = () => {
+    if (filterBy === FilterType.ALL) {
+      return setFilterBy(FilterType.FAVORITES);
+    }
+    return setFilterBy(FilterType.ALL);
+  };
+
   return (
     <>
-      <Button
-        variant="light"
-        color={"red"}
-        fullWidth
-        onClick={() => {
-          if (filterBy === FilterType.ALL) {
-            return setFilterBy(FilterType.FAVORITES);
-          }
-          return setFilterBy(FilterType.ALL);
-        }}
-      >
+      <Button variant="light" color="red" fullWidth onClick={setFiltering}>
         {filterBy === FilterType.ALL ? "Filter by Favorites" : "Show all"}
       </Button>
 

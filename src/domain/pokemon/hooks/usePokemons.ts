@@ -30,7 +30,6 @@ export const usePokemons = () => {
     setPokeListChanged(false);
     const result = await addPokemonToFavorites(name);
     if (result.status === 200) {
-      await fetchAllPokemons();
       return setPokeListChanged(true);
     }
   };
@@ -39,7 +38,6 @@ export const usePokemons = () => {
     setPokeListChanged(false);
     const result = await removePokemonFromFavorites(poke);
     if (result.status === 200) {
-      await fetchAllPokemons();
       return setPokeListChanged(true);
     }
   };
