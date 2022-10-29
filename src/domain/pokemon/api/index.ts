@@ -1,5 +1,5 @@
 import axios from "axios";
-import { handleApiError } from "../../../utils/apiErrorHandler";
+import { handleApiError } from "../../common/utils/apiErrorHandler";
 import { Result } from "../../common/models";
 import { Poke } from "../models/Poke";
 
